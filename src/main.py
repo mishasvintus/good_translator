@@ -1,7 +1,7 @@
 import io
 import pygame
 import tkinter as tk
-from tkinter import scrolledtext
+from tkinter import scrolledtext, ttk
 from gtts import gTTS
 from deep_translator import GoogleTranslator
 
@@ -16,12 +16,21 @@ class GoodTranslatorApp:
         self.swap_button = None
         self.source_scrolled_text = None
 
-        self.configure_window()
+        # Configure colors and fonts
+        self.bg_color = "#2E3440"  # Dark background
+        self.fg_color = "#D8DEE9"  # Light text
+        self.accent_color = "#5E81AC"  # Accent color for buttons
+        self.hover_color = "#81A1C1"  # Hover color for buttons
+        self.scrollbar_bg = "#4C566A"  # Scrollbar background
+        self.scrollbar_trough = "#3B4252"  # Scrollbar trough color
+        self.font = ("JetBrains Mono", 14)
 
+        self.configure_window()
         self.window.mainloop()
 
     def configure_window(self):
         self.window.title("GoodTranslator")
+        self.window.configure(bg=self.bg_color)
         self.window.grid_columnconfigure(0, weight=1)
         self.window.grid_rowconfigure(0, weight=1)
         self.window.grid_rowconfigure(1, weight=0)
@@ -32,54 +41,88 @@ class GoodTranslatorApp:
         self.create_output_widget()
 
     def create_entry_widget(self):
-        input_frame = tk.Frame(self.window)
-        input_frame.grid(row=0, column=0, padx=5, pady=5, sticky="nsew")
+        input_frame = tk.Frame(self.window, bg=self.bg_color)
+        input_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         input_frame.columnconfigure(0, weight=1)
         input_frame.rowconfigure(0, weight=1)
 
-        self.source_scrolled_text = scrolledtext.ScrolledText(input_frame,
-                                                              # width=70,
-                                                              height=4,
-                                                              # bg="white",
-                                                              highlightthickness=0,
-                                                              wrap=tk.WORD,
-                                                              font=("JetBrains Mono", 14),
-                                                              padx=5,
-                                                              pady=5)
+        self.source_scrolled_text = tk.Text(
+            input_frame,
+            width=70,
+            height=4,
+            highlightthickness=0,
+            wrap=tk.WORD,
+            font=self.font,
+            padx=10,
+            pady=10,
+            bg="#3B4252",
+            fg=self.fg_color,
+            insertbackground=self.fg_color,  # Cursor color
+        )
         self.source_scrolled_text.grid(row=0, column=0, sticky="nsew")
         self.source_scrolled_text.bind("<Command-KeyPress>", self.command_keypress)
         self.source_scrolled_text.bind("<Option-BackSpace>", self.option_keypress)
 
     def create_buttons(self):
-        button_frame = tk.Frame(self.window)
-        button_frame.grid(row=1, column=0)
+        button_frame = tk.Frame(self.window, bg=self.bg_color)
+        button_frame.grid(row=1, column=0, pady=10)
 
-        translate_button = tk.Button(button_frame, text="Перевести", command=self.translate)
+        translate_button = tk.Button(
+            button_frame,
+            text="Перевести",
+            command=self.translate,
+            fg=self.bg_color,
+            font=self.font,
+            bd="2",
+            padx=15,
+            pady=5
+        )
         translate_button.pack(side=tk.LEFT, padx=10)
 
-        speak_button = tk.Button(button_frame, text="Озвучить", command=self.speak)
+        # Speak Button
+        speak_button = tk.Button(
+            button_frame,
+            text="Озвучить",
+            command=self.speak,
+            fg=self.bg_color,
+            font=self.font,
+            padx=15,
+            pady=5
+        )
         speak_button.pack(side=tk.LEFT, padx=10)
 
-        swap_button = tk.Button(button_frame, text=f"{self.source_lang}->{self.target_lang}",
-                                command=self.swap_language)
-        swap_button.pack(side=tk.LEFT, padx=10)
+        # Swap Button
+        self.swap_button = tk.Button(
+            button_frame,
+            text=f"{self.source_lang}->{self.target_lang}",
+            command=self.swap_language,
+            fg=self.bg_color,
+            font=self.font,
+            padx=15,
+            pady=5
+        )
+        self.swap_button.pack(side=tk.LEFT, padx=10)
 
     def create_output_widget(self):
-        output_frame = tk.Frame(self.window)
-        output_frame.grid(row=2, column=0, padx=5, pady=5, sticky="nsew")
+        output_frame = tk.Frame(self.window, bg=self.bg_color)
+        output_frame.grid(row=2, column=0, padx=10, pady=10, sticky="nsew")
         output_frame.columnconfigure(0, weight=1)
         output_frame.rowconfigure(0, weight=1)
 
-        self.target_scrolled_text = scrolledtext.ScrolledText(output_frame,
-                                                              # width=70,
-                                                              height=4,
-                                                              wrap=tk.WORD,
-                                                              # bg="white",
-                                                              highlightthickness=0,
-                                                              font=("JetBrains Mono", 14),
-                                                              padx=5,
-                                                              pady=5,
-                                                              state="disabled")
+        self.target_scrolled_text = tk.Text(
+            output_frame,
+            width=70,
+            height=4,
+            wrap=tk.WORD,
+            highlightthickness=0,
+            font=self.font,
+            padx=10,
+            pady=10,
+            bg="#3B4252",
+            fg=self.fg_color,
+            insertbackground=self.fg_color,
+            state="disabled"
+        )
         self.target_scrolled_text.grid(row=0, column=0, sticky="nsew")
 
     def translate(self):
@@ -113,7 +156,7 @@ class GoodTranslatorApp:
         pygame.mixer.music.play()
 
         while pygame.mixer.music.get_busy():
-            self.window.update()  # Чтобы GUI не зависал
+            self.window.update()  # To prevent GUI from freezing
 
     def swap_language(self):
         self.source_lang, self.target_lang = self.target_lang, self.source_lang
@@ -150,11 +193,11 @@ class GoodTranslatorApp:
 
             if char >= 1:
                 start_of_line = f"{line}.{0}"
-                self.source_scrolled_text.delete(start_of_line, current_position)  # Удаляем до начала строки
+                self.source_scrolled_text.delete(start_of_line, current_position)  # Delete to start of line
             else:
                 if line > 1:
                     previous_line_end = self.source_scrolled_text.index(f"{line - 1}.end")
-                    self.source_scrolled_text.delete(previous_line_end, f"{line}.0")  # Удаляем перенос строки
+                    self.source_scrolled_text.delete(previous_line_end, f"{line}.0")  # Delete line break
         elif event.keysym == 'Left':
             cursor_position = self.source_scrolled_text.index(tk.INSERT)
             line_start = self.source_scrolled_text.index(f"{cursor_position} linestart")
@@ -172,7 +215,7 @@ class GoodTranslatorApp:
 
         return 'break'
 
-    def option_keypress(self, event = None):
+    def option_keypress(self, event=None):
         current_position = self.source_scrolled_text.index(tk.INSERT)
 
         line, char = [int(x) for x in current_position.split(".")]
@@ -189,6 +232,8 @@ class GoodTranslatorApp:
         return 'break'
 
     def find_start_of_word(self, current_position):
+        start_of_word = current_position
+
         while current_position.split('.')[1] != '0':
             prev_position = self.source_scrolled_text.index(f"{current_position} -1c")
             char = self.source_scrolled_text.get(prev_position, current_position)
@@ -196,6 +241,7 @@ class GoodTranslatorApp:
                 return prev_position
             current_position = prev_position
         return current_position
+
 
 if __name__ == "__main__":
     app = GoodTranslatorApp()
