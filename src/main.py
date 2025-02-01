@@ -110,7 +110,7 @@ class GoodTranslatorApp:
         # Translate button
         translate_button = tk.Button(
             button_frame,
-            text="Перевести",
+            text="Translate",
             command=self.translate,
             fg=self.window_bg_color,
             font=self.font,
@@ -123,7 +123,7 @@ class GoodTranslatorApp:
         # Speak button
         speak_button = tk.Button(
             button_frame,
-            text="Озвучить",
+            text="Vocalize",
             command=self.speak,
             fg=self.window_bg_color,
             font=self.font,
