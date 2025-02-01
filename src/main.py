@@ -1,16 +1,26 @@
 import io
 import pygame
 import tkinter as tk
+import json
 from tkinter import simpledialog
-
 from gtts import gTTS
 from deep_translator import GoogleTranslator
+import os
+import appdirs
 
 
 class GoodTranslatorApp:
+    CONFIG_DIR = appdirs.user_data_dir("GoodTranslator")
+    CONFIG_PATH = os.path.join(CONFIG_DIR, "config.json")
+
     def __init__(self):
-        self.source_lang = 'fr'
-        self.target_lang = 'ru'
+        os.makedirs(self.CONFIG_DIR, exist_ok=True)
+
+        self.languages = GoogleTranslator().get_supported_languages(as_dict=True)
+
+        self.config = self.load_or_create_config()
+        self.source_lang = self.config.get("source_lang", "fr")
+        self.target_lang = self.config.get("target_lang", "ru")
 
         self.window = tk.Tk()
         self.target_scrolled_text = None
@@ -19,16 +29,43 @@ class GoodTranslatorApp:
         self.source_lang_button = None
         self.target_lang_button = None
 
-        self.languages = GoogleTranslator().get_supported_languages(as_dict=True)
-
         self.window_bg_color = "#2E3440"
-        self.text_bg_color ="#3B4252"
+        self.text_bg_color = "#3B4252"
         self.fg_color = "#D8DEE9"
         self.font = ("JetBrains Mono", 14)
 
-
         self.configure_window()
         self.window.mainloop()
+
+    def language_is_correct(self, language):
+        return language in self.languages.keys() or language in self.languages.values()
+
+    def load_or_create_config(self):
+        try:
+            with open(self.CONFIG_PATH, "r") as file:
+                return json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            default_config = {
+                "source_lang": "fr",
+                "target_lang": "ru"
+            }
+            self.save_config(default_config)
+            return default_config
+
+    def save_config(self, config=None):
+        if not (
+            config and
+            type(config) == dict and
+            self.language_is_correct(config["source_lang"]) and
+            self.language_is_correct(config["target_lang"])
+        ):
+            config = {
+                "source_lang": self.source_lang,
+                "target_lang": self.target_lang
+            }
+
+        with open(self.CONFIG_PATH, "w") as file:
+            json.dump(config, file)
 
     def configure_window(self):
         self.window.title("GoodTranslator")
@@ -62,8 +99,9 @@ class GoodTranslatorApp:
             insertbackground=self.fg_color,
         )
         self.source_scrolled_text.grid(row=0, column=0, sticky="nsew")
-        self.source_scrolled_text.bind("<Command-KeyPress>", self.command_keypress)
-        self.source_scrolled_text.bind("<Option-BackSpace>", self.option_backspace)
+        self.source_scrolled_text.bind("<Command-KeyPress>", self.command_keypress_bind)
+        self.source_scrolled_text.bind("<Option-BackSpace>", self.option_backspace_bind)
+        self.source_scrolled_text.bind("<Return>", self.enter_bind)
 
     def create_buttons(self):
         button_frame = tk.Frame(self.window, bg=self.window_bg_color)
@@ -153,7 +191,6 @@ class GoodTranslatorApp:
         )
         self.target_scrolled_text.grid(row=0, column=0, sticky="nsew")
 
-
     def swap_language(self):
         self.source_lang, self.target_lang = self.target_lang, self.source_lang
         self.source_lang_button.config(text=f"{self.source_lang}")
@@ -170,6 +207,8 @@ class GoodTranslatorApp:
 
         self.target_scrolled_text.config(state="disabled")
 
+        self.save_config()
+
     def select_source_language(self):
         lang = simpledialog.askstring("Choose Source Language",
                                       "Enter the language code (e.g. 'en' or 'english' for English):",
@@ -178,12 +217,13 @@ class GoodTranslatorApp:
         if not lang:
             return
 
-        if lang in self.languages.values() or lang in self.languages.keys():
+        if self.language_is_correct(lang):
             if lang in self.languages.keys():
                 self.source_lang = self.languages[lang]
             else:
                 self.source_lang = lang
             self.source_lang_button.config(text=f"{self.source_lang}")
+            self.save_config()
         else:
             self.show_invalid_language_message()
 
@@ -194,16 +234,18 @@ class GoodTranslatorApp:
         if not lang:
             return
 
-        if lang in self.languages.values() or lang in self.languages.keys():
+        if self.language_is_correct(lang):
             if lang in self.languages.keys():
                 self.target_lang = self.languages[lang]
             else:
                 self.target_lang = lang
             self.target_lang_button.config(text=f"{self.target_lang}")
+            self.save_config()
         else:
             self.show_invalid_language_message()
 
-    def show_invalid_language_message(self):
+    @staticmethod
+    def show_invalid_language_message():
         tk.messagebox.showerror("Invalid Language", "The selected language code is invalid or not supported!")
 
     def translate(self):
@@ -239,7 +281,7 @@ class GoodTranslatorApp:
         while pygame.mixer.music.get_busy():
             self.window.update()  # To prevent GUI from freezing
 
-    def command_keypress(self, event):
+    def command_keypress_bind(self, event):
         if event.char == 'v':
             event.widget.event_generate("<<Paste>>")
         elif event.char == 'c':
@@ -279,7 +321,7 @@ class GoodTranslatorApp:
                     self.source_scrolled_text.delete(previous_line_end, f"{line}.0")
         return 'break'
 
-    def option_backspace(self, event=None):
+    def option_backspace_bind(self, event=None):
         current_position = self.source_scrolled_text.index(tk.INSERT)
 
         line, char = [int(x) for x in current_position.split(".")]
@@ -295,8 +337,6 @@ class GoodTranslatorApp:
         return 'break'
 
     def find_start_of_word(self, current_position):
-        start_of_word = current_position
-
         while current_position.split('.')[1] != '0':
             prev_position = self.source_scrolled_text.index(f"{current_position} -1c")
             char = self.source_scrolled_text.get(prev_position, current_position)
@@ -305,6 +345,11 @@ class GoodTranslatorApp:
             current_position = prev_position
         return current_position
 
+    def enter_bind(self, event):
+        if event.state & 0x0001:
+            return
+        self.translate()
+        return 'break'
 
 if __name__ == "__main__":
     app = GoodTranslatorApp()
