@@ -48,6 +48,7 @@ class GoodTranslatorApp:
                                                               pady=5)
         self.source_scrolled_text.grid(row=0, column=0, sticky="nsew")
         self.source_scrolled_text.bind("<Command-KeyPress>", self.command_keypress)
+        self.source_scrolled_text.bind("<Option-BackSpace>", self.option_keypress)
 
     def create_buttons(self):
         button_frame = tk.Frame(self.window)
@@ -140,8 +141,61 @@ class GoodTranslatorApp:
         elif event.char == 'a':
             text = self.source_scrolled_text
             text.tag_add("sel", "1.0", f"end-1c")
+        elif event.keysym == 'BackSpace':
+            current_position = self.source_scrolled_text.index(tk.INSERT)
+
+            line, char = current_position.split(".")
+            line = int(line)
+            char = int(char)
+
+            if char >= 1:
+                start_of_line = f"{line}.{0}"
+                self.source_scrolled_text.delete(start_of_line, current_position)  # Удаляем до начала строки
+            else:
+                if line > 1:
+                    previous_line_end = self.source_scrolled_text.index(f"{line - 1}.end")
+                    self.source_scrolled_text.delete(previous_line_end, f"{line}.0")  # Удаляем перенос строки
+        elif event.keysym == 'Left':
+            cursor_position = self.source_scrolled_text.index(tk.INSERT)
+            line_start = self.source_scrolled_text.index(f"{cursor_position} linestart")
+            self.source_scrolled_text.mark_set(tk.INSERT, line_start)
+        elif event.keysym == 'Right':
+            cursor_position = self.source_scrolled_text.index(tk.INSERT)
+            line_end = self.source_scrolled_text.index(f"{cursor_position} lineend")
+            self.source_scrolled_text.mark_set(tk.INSERT, line_end)
+        elif event.keysym == 'Up':
+            self.source_scrolled_text.mark_set(tk.INSERT, "1.0")
+            self.source_scrolled_text.see("1.0")
+        elif event.keysym == 'Down':
+            self.source_scrolled_text.mark_set(tk.INSERT, tk.END)
+            self.source_scrolled_text.see(tk.END)
+
         return 'break'
 
+    def option_keypress(self, event = None):
+        current_position = self.source_scrolled_text.index(tk.INSERT)
+
+        line, char = [int(x) for x in current_position.split(".")]
+
+        if char >= 1:
+            start_of_word = self.find_start_of_word(current_position)
+            if start_of_word != current_position:
+                self.source_scrolled_text.delete(start_of_word, current_position)
+        else:
+            if line > 1:
+                previous_line_end = self.source_scrolled_text.index(f"{line - 1}.end")
+                self.source_scrolled_text.delete(previous_line_end, f"{line}.0")
+
+        return 'break'
+
+    def find_start_of_word(self, current_position):
+        while current_position.split('.')[1] != '0':
+            prev_position = self.source_scrolled_text.index(f"{current_position} -1c")
+            char = self.source_scrolled_text.get(prev_position, current_position)
+            if char == ' ':
+                return prev_position
+            current_position = prev_position
+        return current_position
 
 if __name__ == "__main__":
     app = GoodTranslatorApp()
