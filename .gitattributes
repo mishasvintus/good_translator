@@ -1,5 +1,5 @@
 # Игнорировать все файлы в папке 'docs'
-build/* linguist-vendored
-dist/* linguist-vendored
+build/** linguist-vendored
+dist/** linguist-vendored
 
 README.md linguist-documentation
