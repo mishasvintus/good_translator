@@ -28,6 +28,7 @@ class GoodTranslatorApp:
         self.source_scrolled_text = None
         self.source_lang_button = None
         self.target_lang_button = None
+        self.minsize = None
 
         self.window_bg_color = "#2E3440"
         self.text_bg_color = "#3B4252"
@@ -35,8 +36,8 @@ class GoodTranslatorApp:
         self.font = ("JetBrains Mono", 14)
 
         self.configure_window()
-        self.window.mainloop()
 
+        self.window.mainloop()
     def language_is_correct(self, language):
         return language in self.languages.keys() or language in self.languages.values()
 
@@ -168,6 +169,12 @@ class GoodTranslatorApp:
             pady=5
         )
         self.target_lang_button.pack(side=tk.LEFT, padx=10)
+
+        self.window.update()
+        buttons = [translate_button, speak_button, self.source_lang_button, self.swap_button, self.target_lang_button]
+        min_width = sum(button.winfo_width() for button in buttons) + 20 * (len(buttons))
+        min_height = 3 * (button_frame.winfo_height() + 20)
+        self.window.minsize(min_width, min_height)
 
     def create_output_widget(self):
         output_frame = tk.Frame(self.window, bg=self.window_bg_color)

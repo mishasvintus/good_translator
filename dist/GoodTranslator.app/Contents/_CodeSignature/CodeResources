@@ -792,10 +792,6 @@
 		<data>
 		6ltBLAnzspuh2BphuHjFwW/+adg=
 		</data>
-		<key>Resources/goodtranslator.icns</key>
-		<data>
-		bR9scs6/xQgxmDn3sWeEfqUTsdk=
-		</data>
 		<key>Resources/h2-3.2.0.dist-info/INSTALLER</key>
 		<data>
 		16AxQdXWseiLa1nvCLZoHfISxZk=
@@ -819,6 +815,10 @@
 		<key>Resources/h2-3.2.0.dist-info/top_level.txt</key>
 		<data>
 		i6AUH/qhj0NV25EWBrayg9m+8bE=
+		</data>
+		<key>Resources/icon.icns</key>
+		<data>
+		bR9scs6/xQgxmDn3sWeEfqUTsdk=
 		</data>
 		<key>Resources/pygame/freesansbold.ttf</key>
 		<data>
@@ -3690,13 +3690,6 @@
 			YCxMdILeZHndLpeTzaJ15eY9dz2s0eymiSMqtwCPtPs=
 			</data>
 		</dict>
-		<key>Resources/goodtranslator.icns</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			earrvcR8VaBKJSdk35x1QO93j7KGTwMT+whrEDlhQRY=
-			</data>
-		</dict>
 		<key>Resources/h2-3.2.0.dist-info/INSTALLER</key>
 		<dict>
 			<key>hash2</key>
@@ -3737,6 +3730,13 @@
 			<key>hash2</key>
 			<data>
 			Hiulx8KxI2jFUM1dG7+CZeRkO3j50MBwCLG36Vrq+kI=
+			</data>
+		</dict>
+		<key>Resources/icon.icns</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			earrvcR8VaBKJSdk35x1QO93j7KGTwMT+whrEDlhQRY=
 			</data>
 		</dict>
 		<key>Resources/lib-dynload</key>

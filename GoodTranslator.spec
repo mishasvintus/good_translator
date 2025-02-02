@@ -32,7 +32,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['goodtranslator.icns'],
+    icon=['/Users/mikhailgoncharov/good_translator/icons/icon.icns'],
 )
 coll = COLLECT(
     exe,
@@ -46,6 +46,6 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='GoodTranslator.app',
-    icon='goodtranslator.icns',
+    icon='/Users/mikhailgoncharov/good_translator/icons/icon.icns',
     bundle_identifier=None,
 )
