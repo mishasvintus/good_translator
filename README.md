@@ -57,10 +57,10 @@ The application leverages several Python libraries to deliver its functionality.
 Pre-built packages are included in the project for MacBooks with Apple Silicon with MacOS 15.0+
 
 1. **DMG Installer**:
-    - Path: `good_translator/GoodTranslator.dmg`
+    - Path: `./GoodTranslator.dmg`
     - Double-click to mount → Drag the app to your `Applications` folder.
 2. **Pre-built Application**:
-    - Path: `good_translator/dist/GoodTranslator.app`
+    - Path: `./dist/GoodTranslator.app`
     - Double-click to launch.
         - *If macOS blocks the app*, run this command in Terminal:
         
@@ -82,7 +82,7 @@ Install dependencies and run manually:
 pip install pygame customtkinter gtts deep-translator appdirs
 
 # Launch the app
-python src/main.py
+python ./src/main.py
 
 ```
 
@@ -97,7 +97,7 @@ python src/main.py
 pip install pyinstaller
 
 # Build .app bundle
-pyinstaller --windowed --name GoodTranslator --icon=icon.icns GoodTranslator.py
+pyinstaller --windowed --name GoodTranslator --icon=icon.icns ./src/main.py
 
 # The executable will be in the `dist/` folder
 # If you want to make DMG-installer to install then full-fledged application:
@@ -111,7 +111,7 @@ create-dmg --no-sign ./dist/GoodTranslator.app
 pip install pyinstaller
 
 # Build .exe
-pyinstaller --windowed --name GoodTranslator --icon=icon.ico GoodTranslator.py
+pyinstaller --windowed --name GoodTranslator --icon=icon.ico ./src/main.py
 
 # The executable will be in the `dist/` folder
 ```
