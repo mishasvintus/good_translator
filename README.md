@@ -1,4 +1,4 @@
-# GoodTranslator - A Simple Python Translator
+# GoodTranslator - A Minimalistic Python Translator
 
 GoodTranslator is a lightweight, user-friendly translation application built with Python. It allows you to translate text between multiple languages using Google Translator from and vocalize it using Google Text-to-Speech (gTTS). The application features a clean and intuitive graphical user interface (GUI) powered by `tkinter`.
 
