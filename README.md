@@ -97,7 +97,7 @@ python ./src/main.py
 pip install pyinstaller
 
 # Build .app bundle
-pyinstaller --windowed --name GoodTranslator --icon=icon.icns ./src/main.py
+pyinstaller --windowed --name GoodTranslator --icon=./icons/icon.icns ./src/main.py
 
 # The executable will be in the `dist/` folder
 # If you want to make DMG-installer to install then full-fledged application:
@@ -111,7 +111,7 @@ create-dmg --no-sign ./dist/GoodTranslator.app
 pip install pyinstaller
 
 # Build .exe
-pyinstaller --windowed --name GoodTranslator --icon=icon.ico ./src/main.py
+pyinstaller --windowed --name GoodTranslator --icon=./icons/icon.ico ./src/main.py
 
 # The executable will be in the `dist/` folder
 ```
@@ -147,7 +147,7 @@ pyinstaller --windowed --name GoodTranslator --icon=icon.ico ./src/main.py
 
 ### Icons:
 
-- Platform-specific icons (`.icns` for macOS, `.ico` for Windows) are provided in the project folder for building.
+- Platform-specific icons (`.icns` for macOS, `.ico` for Windows) are provided in the project folder ./icons for building.
 
 ---
 
