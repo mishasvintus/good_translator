@@ -9,6 +9,12 @@ GoodTranslator is a lightweight, user-friendly translation application built wit
 
 ---
 
+## Crucial moment
+
+GoodTranslator uses aesthetic JetBrains Mono font and it must be uploaded to your system. So if it's not, use JetBrainsMono.ttf provided in root repository. Otherwise, system default font will be used, I guess.
+
+---
+
 ## Features
 
 - **Text Translation**: Translate text between over 100 languages using the `deep_translator` library.
