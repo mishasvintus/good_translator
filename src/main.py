@@ -104,6 +104,7 @@ class GoodTranslatorApp:
         self.source_scrolled_text.bind("<Command-KeyPress>", self.command_keypress_bind)
         self.source_scrolled_text.bind("<Option-BackSpace>", self.option_backspace_bind)
         self.source_scrolled_text.bind("<Return>", self.enter_bind)
+        self.source_scrolled_text.bind("<Tab>", self.tab_bind)
 
     def create_buttons(self):
         button_frame = tk.Frame(self.window, bg=self.window_bg_color)
@@ -359,9 +360,19 @@ class GoodTranslatorApp:
         return current_position
 
     def enter_bind(self, event):
-        if event.state & 0x0001:
-            return
-        self.translate()
+        if event.state == 0:    # only enter
+            self.translate()
+            return 'break'
+        if event.state & 1:     # shift + enter
+            self.source_scrolled_text.insert(tk.END, "\n")
+            return 'break'
+        if event.state & 8:     # command + enter
+            self.speak()
+            return 'break'
+        return 'break'
+
+    def tab_bind(self, event):
+        self.swap_language()
         return 'break'
 
 if __name__ == "__main__":
