@@ -754,7 +754,7 @@
 		</data>
 		<key>Resources/base_library.zip</key>
 		<data>
-		z4F8TcdP5/1fSx6v+OL48Uz7POc=
+		K+2Jszoz6AcGK+6+owYLfYTTJ3E=
 		</data>
 		<key>Resources/certifi/cacert.pem</key>
 		<data>
@@ -819,6 +819,42 @@
 		<key>Resources/icon.icns</key>
 		<data>
 		bR9scs6/xQgxmDn3sWeEfqUTsdk=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/rng/iso-schematron.rng</key>
+		<data>
+		Go1op5prM1pmBGPMmbTo7uFqB6E=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/RNG2Schtrn.xsl</key>
+		<data>
+		gw8JUVGbfoiM4PnGl4RuYCHn/sA=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/XSD2Schtrn.xsl</key>
+		<data>
+		+27UKlCTWg5312vRXldA7ijU6zI=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_abstract_expand.xsl</key>
+		<data>
+		47+62eTQoIRbDwHznw46HeAk23A=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_dsdl_include.xsl</key>
+		<data>
+		OGl2iT6BakNol6cYdYs6u/JoaeE=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_schematron_message.xsl</key>
+		<data>
+		JnOKlPhxa+9BjjlodWBP5w4YSI0=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_schematron_skeleton_for_xslt1.xsl</key>
+		<data>
+		QekDoEjBN2P/f6ofaCbqkTKe9ms=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_svrl_for_xslt1.xsl</key>
+		<data>
+		0b3cqpseVdF8eLWXy1wcOB5WjeY=
+		</data>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/readme.txt</key>
+		<data>
+		70CMM3nNaMhY+q1Fr/J9H9teBhk=
 		</data>
 		<key>Resources/pygame/freesansbold.ttf</key>
 		<data>
@@ -1629,6 +1665,65 @@
 		<dict>
 			<key>symlink</key>
 			<string>pygame/.dylibs/libz.1.2.11.zlib-ng.dylib</string>
+		</dict>
+		<key>Frameworks/lxml/_elementpath.cpython-313-darwin.so</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			wr3SWuBxaezrju9I7UB4berWSH0=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"c2bdd25ae07169eceb8eef48ed40786dead6487d"</string>
+		</dict>
+		<key>Frameworks/lxml/builder.cpython-313-darwin.so</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			/4tVn9xymXVr3jlhObJdF7O6CsY=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"ff8b559fdc7299756bde396139b25d17b3ba0ac6"</string>
+		</dict>
+		<key>Frameworks/lxml/etree.cpython-313-darwin.so</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			3ocrOy7f7dy2sum5GwzxM0Pxs5k=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"de872b3b2edfeddcb6b2e9b91b0cf13343f1b399"</string>
+		</dict>
+		<key>Frameworks/lxml/html/diff.cpython-313-darwin.so</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			nSDG7D403vwqTzFEWyyc8SCf7I8=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"9d20c6ec3e34defc2a4f31445b2c9cf1209fec8f"</string>
+		</dict>
+		<key>Frameworks/lxml/isoschematron</key>
+		<dict>
+			<key>symlink</key>
+			<string>../../Resources/lxml/isoschematron</string>
+		</dict>
+		<key>Frameworks/lxml/objectify.cpython-313-darwin.so</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			YUJp/wTZk1BOhN/uxocJ6/HQN84=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"614269ff04d993504e84dfeec68709ebf1d037ce"</string>
+		</dict>
+		<key>Frameworks/lxml/sax.cpython-313-darwin.so</key>
+		<dict>
+			<key>cdhash</key>
+			<data>
+			7SFkjRbv0FICnvbhjGL8umxTBAc=
+			</data>
+			<key>requirement</key>
+			<string>cdhash H"ed21648d16efd052029ef6e18c62fcba6c530407"</string>
 		</dict>
 		<key>Frameworks/numpy/_core/_multiarray_tests.cpython-313-darwin.so</key>
 		<dict>
@@ -3614,7 +3709,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kdbkWrJaaEQEc/IQqF3Ktqx2IydaCiASkJrfTwKbuNI=
+			iYVN3aEGWLB7g/eQ2v2X01UedHnz46V47GsXv9kGEEA=
 			</data>
 		</dict>
 		<key>Resources/certifi/cacert.pem</key>
@@ -3888,6 +3983,99 @@
 		<dict>
 			<key>symlink</key>
 			<string>pygame/.dylibs/libz.1.2.11.zlib-ng.dylib</string>
+		</dict>
+		<key>Resources/lxml/_elementpath.cpython-313-darwin.so</key>
+		<dict>
+			<key>symlink</key>
+			<string>../../Frameworks/lxml/_elementpath.cpython-313-darwin.so</string>
+		</dict>
+		<key>Resources/lxml/builder.cpython-313-darwin.so</key>
+		<dict>
+			<key>symlink</key>
+			<string>../../Frameworks/lxml/builder.cpython-313-darwin.so</string>
+		</dict>
+		<key>Resources/lxml/etree.cpython-313-darwin.so</key>
+		<dict>
+			<key>symlink</key>
+			<string>../../Frameworks/lxml/etree.cpython-313-darwin.so</string>
+		</dict>
+		<key>Resources/lxml/html</key>
+		<dict>
+			<key>symlink</key>
+			<string>../../Frameworks/lxml/html</string>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/rng/iso-schematron.rng</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			VsWxPyi3iViJDDbjJJw0wWkEHkLrz9zoCA8zJLor9N4=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/RNG2Schtrn.xsl</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ObebsB8Wt+d3uIA/U5NU85TpnQ3PxPX38TdOAqosMac=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/XSD2Schtrn.xsl</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QweRrIIM+zFcgg98GXA2CaWfIbgVE0XKEeYSfvv67A0=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_abstract_expand.xsl</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xSZ/Ekq/I+62ZpiE5AqYYHwFW/qh855zt9V4/s7rbkY=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_dsdl_include.xsl</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			x42QJ+dxQ1waPzydsCoQnp2Xj15y53nW43O7BuoDRHk=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_schematron_message.xsl</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Tr9BnO6pzjVWwhqJfm10UlvAy95EgfSCz2iMlrVGT6Q=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_schematron_skeleton_for_xslt1.xsl</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ue8q/88X4e/jsJizo31GRNBxNhdxkEE9fY20oq0Iqwk=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_svrl_for_xslt1.xsl</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BBAdsVSi5zAzeGepuN6gS1saQINDqITXKplmmj4dTWg=
+			</data>
+		</dict>
+		<key>Resources/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/readme.txt</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			OGLiFswuLJEW5EPYKOeoauuCJFEtVa6jyzBE1OcJI98=
+			</data>
+		</dict>
+		<key>Resources/lxml/objectify.cpython-313-darwin.so</key>
+		<dict>
+			<key>symlink</key>
+			<string>../../Frameworks/lxml/objectify.cpython-313-darwin.so</string>
+		</dict>
+		<key>Resources/lxml/sax.cpython-313-darwin.so</key>
+		<dict>
+			<key>symlink</key>
+			<string>../../Frameworks/lxml/sax.cpython-313-darwin.so</string>
 		</dict>
 		<key>Resources/numpy</key>
 		<dict>

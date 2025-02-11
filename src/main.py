@@ -91,6 +91,7 @@ class GoodTranslatorApp:
             width=70,
             height=4,
             highlightthickness=0,
+            undo=True,
             wrap=tk.WORD,
             font=self.font,
             padx=10,
@@ -298,6 +299,11 @@ class GoodTranslatorApp:
         elif event.char == 'a':
             text = self.source_scrolled_text
             text.tag_add("sel", "1.0", f"end-1c")
+        elif event.char == 'z':
+            try:
+                self.source_scrolled_text.edit_undo()
+            except:
+                pass
         elif event.keysym == 'Left':
             cursor_position = self.source_scrolled_text.index(tk.INSERT)
             line_start = self.source_scrolled_text.index(f"{cursor_position} linestart")
