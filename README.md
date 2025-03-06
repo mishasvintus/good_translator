@@ -9,9 +9,11 @@ GoodTranslator is a lightweight, user-friendly translation application built wit
 
 ---
 
-## Crucial moment
+## Disclaimer
 
-GoodTranslator uses aesthetic JetBrains Mono font and it must be installed on your system. So if it's not, use JetBrainsMono.ttf provided in the root of the repository. Otherwise, system default font will be used.
+- The design was developed for MacOS systems, there are no guarantees that on other systems or in newer versions of MacOS, the application will look the same. Moreover, shortcuts are MacOS friendly only (use of Command button)
+
+- GoodTranslator uses aesthetic JetBrains Mono font and it must be installed on your system. So if it's not, use JetBrainsMono.ttf provided in the root of the repository. Otherwise, system default font will be used.
 
 ---
 
@@ -23,6 +25,16 @@ GoodTranslator uses aesthetic JetBrains Mono font and it must be installed on yo
 - **Customizable Language Selection**: Choose source and target languages by entering language codes (e.g., `en` for English, `fr` for French) or the full language name (e.g., `english`, `french`, `spanish`).
 - **Persistent Configuration**: Source and target languages you preferred are saved for future use. Even after restarting GoodTranslator
 - **Keyboard Shortcuts**: Use shortcuts for common actions like copy, paste, and select all.
+
+| Hotkey            | Action                                      |
+|-------------------|--------------------------------------------|
+| `Cmd + C`         | Copy                                       |
+| `Cmd + V`         | Paste                                      |
+| `Cmd + X`         | Cut                                        |
+| `Cmd + Z`         | Undo                                       |
+| `Tab`             | Swap translator languages (including text) |
+| `Enter`           | Translate                                  |
+| `Cmd + Enter`     | Vocalize                                   |
 
 ---
 
