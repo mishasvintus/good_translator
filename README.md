@@ -109,12 +109,13 @@ python ./src/main.py
 ### 2. Build the Application (Advanced)
 
 ### macOS:
-Before building you should install brew and make 
+Before building you should install brew and install create-dmg through it
 ```bash
 brew install npm
 npm install -g create-dmg
-```
 
+```
+Now you are ready to build
 ```bash
 # Install dependencies
 pip install pygame customtkinter gtts deep-translator appdirs
